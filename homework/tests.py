@@ -1,31 +1,24 @@
-import os
-from selene import browser, have, be
+from test_module.module import RegistrationForm
 
 
 def test_complete_todo():
-    browser.open("/automation-practice-form")
-    browser.element("#firstName").type("Julia")
-    browser.element("#lastName").type("Engineer")
-    browser.element("#userEmail").type("engineer@mail.ru")
-    browser.element('[for="gender-radio-2"]').click()
-    browser.element("#userNumber").type("8800555353")
-    browser.element("#dateOfBirthInput").click()
-    browser.element(".react-datepicker__year-select").type("2001").click()
-    browser.element(".react-datepicker__month-select").element('[value="5"]').click()
-    browser.element(".react-datepicker__day--014").click()
-    browser.element("#subjectsInput").type("English").click().press_enter()
-    browser.element('[for="hobbies-checkbox-2"]').click()
-    browser.element("#uploadPicture").send_keys(os.path.abspath("woman-face.png"))
-    browser.element("#currentAddress").type("Engineer, 14")
-    browser.element("#react-select-3-input").type("NCR").press_enter()
-    browser.element("#react-select-4-input").type("Delhi").press_enter()
-    browser.element("#submit").press_enter()
-    browser.element("#example-modal-sizes-title-lg").should(
-        have.text("Thanks for submitting the form")
-    )
-    browser.element(".table").all("td").even.should(
-        have.exact_texts(
-            "Julia Engineer",
+    registration_form = RegistrationForm()
+    registration_form.open()
+    registration_form.element_type_first_name("Julia")
+    registration_form.element_type_last_name("Engineer")
+    registration_form.element_type_user_email("engineer@mail.ru")
+    registration_form.element_click_gender()
+    registration_form.element_type_user_number("8800555353")
+    registration_form.element_click_birthday()
+    registration_form.element_type_click_subjects()
+    registration_form.element_click_hobbies()
+    registration_form.element_picture("woman-face.png")
+    registration_form.element_type_address("Engineer, 14")
+    registration_form.element_type_state("NCR")
+    registration_form.element_type_city("Delhi")
+    registration_form.element_press_submit()
+    registration_form.element_should_have_text("Thanks for submitting the form")
+    registration_form.element_should_exact_text("Julia Engineer",
             "engineer@mail.ru",
             "Female",
             "8800555353",
@@ -34,6 +27,5 @@ def test_complete_todo():
             "Reading",
             "woman-face.png",
             "Engineer, 14",
-            "NCR Delhi",
-        )
-    )
+            "NCR Delhi")
+
