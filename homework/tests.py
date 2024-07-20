@@ -1,9 +1,9 @@
 from test_module.module import RegistrationForm
 from test_module.users import User
+from test_module.application import app
 
 
 def test_complete_todo():
-    registration_form = RegistrationForm()
     user = User(first_name="Julia",
                 last_name="Engineer",
                 user_email="engineer@mail.ru",
@@ -17,6 +17,6 @@ def test_complete_todo():
                 state="NCR",
                 city="Delhi")
 
-    registration_form.open()
-    registration_form.register(user)
-    registration_form.should_exact_text(user)
+    app.registration.open()
+    app.registration.register(user)
+    app.registration.should_exact_text(user)
