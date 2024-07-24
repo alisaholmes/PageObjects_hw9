@@ -1,6 +1,6 @@
 from pathlib import Path
+
 from selene import browser, have
-from test_data.user import User
 
 
 class RegistrationForm:
@@ -56,30 +56,5 @@ class RegistrationForm:
         browser.element('.table').all('td').even.should(
             have.exact_texts(first_name, email, gender, phone, birthday, subjects, hobbies, photo, address, city))
 
-    def should_exact_text(self, user: User):
-        browser.element('.table').all('td').even.should(have.exact_texts(
-            f'{user.first_name} {user.last_name}',
-            f'{user.email}',
-            f'{user.gender}',
-            f'{user.phone}',
-            f'{user.birthday}',
-            f'{user.subject}',
-            f'{user.hobbies}',
-            f'{user.photo}',
-            f'{user.address}',
-            f'{user.state} {user.city}'))
-
-    def register(self, user: User):
-        self.type_first_name(user.first_name)
-        self.type_last_name(user.last_name)
-        self.type_user_email(user.email)
-        self.gender()
-        self.type_number(user.phone)
-        self.birthday()
-        self.type_subjects(user.subject)
-        self.hobbies()
-        self.picture(user.photo)
-        self.type_address(user.address)
-        self.type_state(user.state)
-        self.type_city(user.city)
-        self.press_submit()
+    def open_simple_registration_form(self):
+        browser.open('/text-box')

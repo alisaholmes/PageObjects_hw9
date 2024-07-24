@@ -1,31 +1,17 @@
-import dataclasses
+class UserTextBox:
+    name = str
+    email = str
+    current_address = str
+    permanent_address = str
 
-@dataclasses.dataclass
-class User:
-    first_name: str
-    last_name: str
-    email: str
-    gender: str
-    phone: str
-    birthday: str
-    subject: str
-    photo: str
-    hobbies: str
-    address: str
-    state: str
-    city: str
-
-    def __init__(self, first_name, last_name, email, gender, phone, birthday, subject, photo, hobbies, address, state,
-                 city):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, name, email, current_address, permanent_address):
+        self.name = name
         self.email = email
-        self.gender = gender
-        self.phone = phone
-        self.birthday = birthday
-        self.subject = subject
-        self.photo = photo
-        self.hobbies = hobbies
-        self.address = address
-        self.state = state
-        self.city = city
+        self.current_address = current_address
+        self.permanent_address = permanent_address
+
+
+user_text_box = UserTextBox("Julia Engineer",
+                            "engineer@mail.ru",
+                            "Engineer, 14",
+                            "Engineer, 14")
